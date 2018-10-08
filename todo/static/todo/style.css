@@ -110,3 +110,25 @@ footer a:hover,
   color: #099268;
   border-bottom-color: #099268;
 }
+
+/* Form page */
+
+#form article a {
+  color: #ced4da;
+  text-decoration: none;
+  border-bottom: 1px dotted #ced4da;
+}
+
+#form-footer a.dangerBtn {
+  color: #adb5bd;
+}
+#form-footer a.dangerBtn:hover {
+  color: #ff6b6b;
+}
+
+#form-footer a.infoBtn {
+  color: #adb5bd;
+}
+#form-footer a.infoBtn:hover {
+  color: #9775fa;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <title>{{ todo.title }} </title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'todo/style.css' %}">
+  <style type="text/css">
+    article label{
+      display: inline-block;
+      width: 150px;
+    }
+    article input, select{
+      border-radius: 2px;
+      border: 1px solid #adb5bd;
+      padding: .2em;
+      width: 150px;
+    }
+    article select{
+      width: 158px;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+  {% if error_message %}
+  <p class="error_message"><strong>{{ error_message }}</strong></p>
+  {% endif %}
+  <div class="wrapper" id="form">
+    {% if todo.title %}
+      <h1>{{ todo.title }}</h1>
+    {% else %}
+      <h1>Nova tarefa</h1>
+    {% endif %}
+    <article class="box">
+      <form id="mainForm" action="{% url 'todo:form' todo.id %}" method="post">
+        {% csrf_token %}
+        <ul>
+          {{ form.as_ul }}
+        </ul>
+      </form>
+    </article>
+  </div>
+  <footer id="form-footer">
+    {% if not todo.id == 0 %}
+      <a href="{% url 'todo:delete' todo.id %}" class="dangerBtn">Remover</a>
+      <a href="{% url 'todo:detail' todo.id %}" class="infoBtn">Voltar</a>
+    {% else %}
+      <a href="{% url 'todo:index' %}" class="infoBtn">Voltar</a>
+    {% endif %}
+    <a href="javascript: saveForm();">Salvar</a>
+  </footer>
+
+  <script>
+    var nameData = document.getElementById('id_title')
+    var h1Elm = document.getElementsByTagName('h1')[0]
+    var formElm = document.getElementById('mainForm')
+
+    function addListener(element, events, callback) {
+      events.forEach(function(event) {
+        element.addEventListener(event, callback)
+      })
+    }
+
+    function saveForm(){
+      if(formElm.reportValidity()){
+        formElm.submit()
+      }
+    }
+
+    addListener(nameData, ['keydown', 'keyup'], function(){
+      h1Elm.innerHTML = nameData.value || 'Nova tarefa'
+    })
+  </script>
+</body>
+</html>
