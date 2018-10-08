@@ -62,4 +62,5 @@ def form(request, todo_id):
 
 
 def delete(request, todo_id):
-    return HttpResponse('hwhw')
+    Todo.objects.filter(pk=todo_id).delete()
+    return HttpResponseRedirect(reverse('todo:index'))
