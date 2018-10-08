@@ -5,22 +5,6 @@
   <title>{{ todo.title }} </title>
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'todo/style.css' %}">
-  <style type="text/css">
-    article label{
-      display: inline-block;
-      width: 150px;
-    }
-    article input, select{
-      border-radius: 2px;
-      border: 1px solid #adb5bd;
-      padding: .2em;
-      width: 150px;
-    }
-    article select{
-      width: 158px;
-      background: transparent;
-    }
-  </style>
 </head>
 <body>
   {% if error_message %}

@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
@@ -22,7 +22,8 @@ def detail(request, todo_id):
 def new(request):
     form = TodoForm()
     todo = {
-        'id': 0
+        'id': 0,
+        'title': 'Nova tarefa'
     }
     context = {'form': form, 'todo': todo}
 

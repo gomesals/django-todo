@@ -13,7 +13,9 @@
       {% if todos %}
         <ul>
           {% for todo in todos %}
-            <li><a href="{% url 'todo:detail' todo.id %}">{{ todo.title }}</a></li>
+            <li class="{% if todo.is_complete %} todo--strike {% endif %}">
+              <a href="{% url 'todo:detail' todo.id %}">{{ todo.title }}</a>
+            </li>
           {% endfor %}
         </ul>
       {% else %}
