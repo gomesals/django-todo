@@ -1,1 +1,28 @@
-{{ todos }}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <title>Gerenciador de tarefas</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'todo/style.css' %}">
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Tarefas</h1>
+    <article class="box">
+      {% if todos %}
+        <ul>
+          {% for todo in todos %}
+            <li><a href="{% url 'todo:detail' todo.id %}">{{ todo.title }}</a></li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>Nenhuma tarefa cadastrada.</p>
+      {% endif %}
+    </article>
+    <div class="addBtn">
+      <a href="{% url 'todo:index' %}">Adicionar tarefa</a>
+    </div>
+  </div>
+</body>
+</html>

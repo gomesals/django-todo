@@ -11,7 +11,9 @@ def index(request):
 
 
 def detail(request, todo_id):
-    return HttpResponse('hwhw')
+    todo = Todo.objects.get(pk=todo_id)
+    context = {'todo': todo}
+    return render(request, 'todo/detail.html', context)
 
 
 def form(request, todo_id):

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <title>{{ todo.title}} </title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'todo/style.css' %}">
+</head>
+<body>
+  <div class="wrapper">
+    <h1>{{ todo.title }}</h1>
+    <article class="box">
+      <a href="{% url 'todo:form' todo.id %}" class="editBtn">editar</a>
+      <div class="info">
+        Finalizada: {% if todo.is_complete %} Sim {% else %} Não {% endif %}
+      </div>
+      {{ todo.description }}
+    </article>
+  </div>
+  <footer>
+    <a href="{% url 'todo:index' %}">Voltar</a>
+  </footer>
+
+</body>
+</html>
